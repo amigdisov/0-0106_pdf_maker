@@ -1,0 +1,19 @@
+[
+  {
+    "invoice_id": "2026-0030",
+    "date": "01.10.2026",
+    "items": [
+      {"product": "Сыр Российский", "price": 620.00, "quantity": 4},
+      {"product": "Масло сливочное", "price": 180.00, "quantity": 10},
+      {"product": "Сметана 20%", "price": 95.50, "quantity": 8}
+    ]
+  },
+  {
+    "invoice_id": "2026-0031",
+    "date": "03.10.2026",
+    "items": [
+      {"product": "Вода питьевая 5 л", "price": 70.00, "quantity": 30},
+      {"product": "Сок яблочный 1 л", "price": 115.00, "quantity": 18}
+    ]
+  }
+]

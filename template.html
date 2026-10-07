@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Накладная № 2026-0007</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: "DejaVu Sans", Arial, sans-serif;
+    font-size: 13px;
+    color: #222;
+    margin: 0;
+    padding: 30px;
+    background: #f5f5f5;
+  }
+  .invoice {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 32px 36px;
+    border: 1px solid #ddd;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid #333;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .company-info { color: #555; line-height: 1.5; }
+  .doc-title { text-align: right; }
+  .doc-title h1 {
+    font-size: 20px;
+    margin: 0 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .doc-title .meta { color: #555; line-height: 1.6; }
+  .doc-title .meta strong { color: #222; }
+
+  .parties {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 22px;
+  }
+  .party {
+    flex: 1;
+    border: 1px solid #e0e0e0;
+    padding: 10px 14px;
+    border-radius: 4px;
+  }
+  .party h3 {
+    margin: 0 0 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #888;
+  }
+  .party p { margin: 0; line-height: 1.6; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  th {
+    background: #f0f0f0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #555;
+  }
+  td.num, th.num { text-align: right; }
+  tbody tr:nth-child(even) { background: #fafafa; }
+
+  tfoot td {
+    font-weight: bold;
+    background: #f0f0f0;
+  }
+  tfoot .total-label { text-align: right; }
+
+  .notes {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #555;
+    border-top: 1px dashed #ccc;
+    padding-top: 12px;
+    line-height: 1.6;
+  }
+
+  .signatures {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .sig { flex: 1; }
+  .sig .line {
+    border-bottom: 1px solid #333;
+    height: 22px;
+    margin-bottom: 4px;
+  }
+  .sig .caption { font-size: 11px; color: #777; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .invoice { border: none; padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="invoice">
+
+  <!-- ШАПКА (захардкожено) -->
+  <div class="header">
+    <div>
+      <div class="company-name">ООО «Ромашка»</div>
+      <div class="company-info">
+        ИНН 7701234567<br>
+        г. Москва, ул. Ленина, д. 10<br>
+        Тел.: +7 (495) 123-45-67
+      </div>
+    </div>
+    <div class="doc-title">
+      <h1>Накладная</h1>
+      <div class="meta">
+        № <strong>2026-0007</strong><br>
+        от <strong>07.10.2026</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- СТОРОНЫ (захардкожено) -->
+  <div class="parties">
+    <div class="party">
+      <h3>Поставщик</h3>
+      <p>
+        <strong>ООО «Ромашка»</strong><br>
+        ИНН: 7701234567<br>
+        г. Москва, ул. Ленина, д. 10
+      </p>
+    </div>
+    <div class="party">
+      <h3>Покупатель</h3>
+      <p>
+        <strong>ООО «Василёк»</strong><br>
+        ИНН: 7809876543<br>
+        г. Санкт-Петербург, пр. Мира, д. 5
+      </p>
+    </div>
+  </div>
+
+  <!-- ТАБЛИЦА: placeholders только здесь -->
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px;" class="num">№</th>
+        <th>Наименование товара</th>
+        <th style="width:100px;" class="num">Цена, ₽</th>
+        <th style="width:90px;" class="num">Кол-во</th>
+        <th style="width:120px;" class="num">Сумма, ₽</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Повторяющийся блок для каждой строки CSV -->
+      <tr>
+        <td class="num">1</td>
+        <td>{{ product }}</td>
+        <td class="num">{{ price }}</td>
+        <td class="num">{{ quantity }}</td>
+        <td class="num">{{ sum }}</td>
+      </tr>
+      <!-- /блок -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" class="total-label">Итого:</td>
+        <td class="num">{{ total }} ₽</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="total-label">В т.ч. НДС 20%:</td>
+        <td class="num">{{ vat }} ₽</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- ПРИМЕЧАНИЯ (захардкожено) -->
+  <div class="notes">
+    <strong>Примечание:</strong> Оплата в течение 5 банковских дней.<br>
+    Всего наименований: 5, на сумму 5 232.00 ₽.
+  </div>
+
+  <!-- ПОДПИСИ (захардкожено) -->
+  <div class="signatures">
+    <div class="sig">
+      <div class="line"></div>
+      <div class="caption">Отпустил (Иванов И.И.)</div>
+    </div>
+    <div class="sig">
+      <div class="line"></div>
+      <div class="caption">Принял (Петров П.П.)</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
